@@ -1,0 +1,21 @@
+<div class="row justify-content-md-center">
+  <div class="col-4">
+    <form>
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input (input)="onChangeName($event)" type="text" class="form-control" id="name">
+      </div>
+      <div class="mb-3">
+        <div class="btn-group" *ngIf="(userItems$ | async)?.length">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Users
+          </button>
+          <ul class="dropdown-menu">
+            <li *ngFor="let item of userItems$ | async"><a class="dropdown-item" href="#">{{item.name}}</a></li>
+          </ul>
+        </div>
+      </div>
+      <button [disabled]="name.length > 0 ? false : true" (click)="onSearchUser()" type="button" class="btn btn-primary">Search</button>
+    </form>
+  </div>
+</div>
